@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>あなたの年齢（単位：ささき）</title>
+    </head>
+    <body>
+        <h1>あなたの年齢（単位：ささき）</h1>
+        <p>あなたの誕生日(yyyy-mm-dd): <input type="text" name="birthday" id="birthday" value="2000-11-01"></p>
+        <p><input type="button" value="計算！" onclick="getAge();"></p>
+        <p>生まれてから<span id="daysPast">???</span>日経過していて、だいたい<span id="age">???</span>歳です！</p>
+        <p>今日であっぷるささきくんが生まれてから<span id="sasakiDays">???</span>日経過していて、だいたい<span id="sasakiAge">???</span>歳です！</p>
+        <p>そして、あなたの年齢をあっぷるささきに変換すると、だいたい<span id="appleAge">???</span>ささきです！</p>
+        <script>
+            function getAge() {
+                var birthday = document.getElementById('birthday').value;
+                var d1 = new Date(birthday);
+                var d2 = new Date();
+                var diff = d2.getTime() - d1.getTime();
+                var daysPast = Math.floor(diff / (1000 * 60 * 60 * 24));
+                var age = Math.floor(daysPast / 365.25);
+                var sasakiBD = new Date(973004400000);
+                var difff = d2.getTime() - sasakiBD.getTime();
+                var sasakiDays = Math.floor(difff / (1000 * 60 * 60 * 24));
+                var sasakiAge = Math.floor(sasakiDays /365.25);
+                var appleAge = (age / sasakiAge).toFixed(3);
+                document.getElementById('daysPast').innerHTML = daysPast;
+                document.getElementById('age').innerHTML = age;
+                document.getElementById('sasakiDays').innerHTML = sasakiDays;
+                document.getElementById('sasakiAge').innerHTML = sasakiAge;
+                document.getElementById('appleAge').innerHTML = appleAge;
+            }
+        </script>
+    </body>
+</html>
